@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import shutil
 import sys
 import threading
 import time
@@ -99,8 +100,14 @@ class Plugin:
 
     def unzipPlugin(self):
         zip_path = os.path.join(ZIPS_PATH, f"{self.slug}.zip")
-        zip = zipfile.ZipFile(zip_path)
-        zip.extractall(PLUGINS_PATH)
+        extract_path = os.path.join(PLUGINS_PATH, self.slug)
+
+        # Clean old plugin directory first
+        if os.path.exists(extract_path):
+            shutil.rmtree(extract_path)
+
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            zip_ref.extractall(PLUGINS_PATH)
 
 def getPluginsMetadata():
     num_fetched = 0; page = 1
@@ -151,7 +158,7 @@ def downloadUpdatedPlugins(plugins: List[Plugin]):
                     f.result()  # raise exception if thread failed
                 except Exception as e:
                     print(f"\nError downloading plugin: {e}")
-
+    print(f"\r{" "*100}\r\033[36m[+] Done!")
 
 
 def main():
