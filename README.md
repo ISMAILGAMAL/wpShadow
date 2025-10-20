@@ -1,6 +1,6 @@
-# WP-Shadow
+# wpShadow
 
-**WP-Shadow** is a Python utility designed to download, manage, and monitor a large collection of popular WordPress plugins. It uses multi-threading for speed and a local cache to only download plugins that are new or have been updated since the last run.
+**wpShadow** is a Python utility designed to download, manage, and monitor a large collection of popular WordPress plugins. It uses multi-threading for speed and a local cache to only download plugins that are new or have been updated since the last run.
 
 This tool is useful for security researchers, bug bounty hunters, or developers who need a large, locally-stored dataset of recent WordPress plugin code for **static analysis** or **vulnerability research**.
 
@@ -11,7 +11,7 @@ This tool is useful for security researchers, bug bounty hunters, or developers 
 
     ```bash
     git clone https://github.com/ISMAILGAMAL/wpShadow.git
-    cd WPShadow
+    cd wpShadow
     ```
 
 2.  **Ensure Dependencies are Met:**
